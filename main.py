@@ -2,6 +2,15 @@ import tkinter as tk
 
 
 def creer_grille(fenetre):
+    joueur_actuel = "X"
+
+    def jouer(bouton):
+        nonlocal joueur_actuel
+
+        if bouton["text"] == "":
+            bouton["text"] = joueur_actuel
+            joueur_actuel = "O" if joueur_actuel == "X" else "X"
+
     cadre = tk.Frame(fenetre)
     cadre.pack(expand=True)
 
@@ -14,6 +23,7 @@ def creer_grille(fenetre):
                 width=4,
                 height=2,
             )
+            bouton.config(command=lambda case=bouton: jouer(case))
             bouton.grid(row=ligne, column=colonne)
 
 
